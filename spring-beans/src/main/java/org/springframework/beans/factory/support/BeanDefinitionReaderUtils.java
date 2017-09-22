@@ -126,6 +126,7 @@ public class BeanDefinitionReaderUtils {
 		else {
 			// Top-level bean: use plain class name.
 			// Increase counter until the id is unique.
+			//去重,containsBeanDefinition什么时候放入的,Map<String, BeanDefinition> beanDefinitionMap
 			int counter = -1;
 			while (counter == -1 || registry.containsBeanDefinition(id)) {
 				counter++;

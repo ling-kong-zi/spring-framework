@@ -527,6 +527,7 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 		//创建了DefaultBeanDefinitionDocumentReader，，便于扩张
 		BeanDefinitionDocumentReader documentReader = createBeanDefinitionDocumentReader();
 		int countBefore = getRegistry().getBeanDefinitionCount();
+		//createReaderContext构造XmlReaderContext传入
 		documentReader.registerBeanDefinitions(doc, createReaderContext(resource));
 		return getRegistry().getBeanDefinitionCount() - countBefore;
 	}
@@ -566,6 +567,7 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 	 */
 	protected NamespaceHandlerResolver createDefaultNamespaceHandlerResolver() {
 		ClassLoader cl = (getResourceLoader() != null ? getResourceLoader().getClassLoader() : getBeanClassLoader());
+		//传入加载器
 		return new DefaultNamespaceHandlerResolver(cl);
 	}
 

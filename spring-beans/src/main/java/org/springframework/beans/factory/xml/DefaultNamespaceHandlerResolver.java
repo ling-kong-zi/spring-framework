@@ -127,6 +127,7 @@ public class DefaultNamespaceHandlerResolver implements NamespaceHandlerResolver
 			String className = (String) handlerOrClassName;
 			try {
 				Class<?> handlerClass = ClassUtils.forName(className, this.classLoader);
+				//handlerClass没有继承NamespaceHandler
 				if (!NamespaceHandler.class.isAssignableFrom(handlerClass)) {
 					throw new FatalBeanException("Class [" + className + "] for namespace [" + namespaceUri +
 							"] does not implement the [" + NamespaceHandler.class.getName() + "] interface");
@@ -157,6 +158,7 @@ public class DefaultNamespaceHandlerResolver implements NamespaceHandlerResolver
 				handlerMappings = this.handlerMappings;
 				if (handlerMappings == null) {
 					try {
+						//创建handlerMappings，并加载handlerMappingsLocation里的属性
 						Properties mappings =
 								PropertiesLoaderUtils.loadAllProperties(this.handlerMappingsLocation, this.classLoader);
 						if (logger.isDebugEnabled()) {
